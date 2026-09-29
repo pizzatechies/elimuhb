@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elimuhub — School management for Kenyan schools</title>
+<meta name="description" content="Elimuhub — a better education for all. The school management system for Kenyan primary and secondary schools: fees and M-Pesa, CBC and KCSE exams, report cards, payroll, a parent app and a school website builder. A product of Pizza Technologies.">
+<meta name="theme-color" content="#027a48">
+<link rel="canonical" href="https://pizzatechies.github.io/elimuhb/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elimuhub">
+<meta property="og:title" content="Elimuhub — Run your whole school from one app">
+<meta property="og:description" content="Fees & M-Pesa, CBC and KCSE report cards, payroll, a parent app and a school website builder — for primary and secondary schools across Kenya. A better education for all.">
+<meta property="og:url" content="https://pizzatechies.github.io/elimuhb/">
+<meta property="og:image" content="https://pizzatechies.github.io/elimuhb/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Elimuhub — Run your whole school from one app">
+<meta name="twitter:description" content="School management for Kenyan schools. A better education for all. A product of Pizza Technologies.">
+<meta name="twitter:image" content="https://pizzatechies.github.io/elimuhb/og-image.jpg">
+<meta name="author" content="Pizza Technologies">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf6;
+  --surface: #ffffff;
+  --surface-2: #f3f1ea;
+  --ink: #0e1a13;
+  --ink-2: #33423a;
+  --muted: #5f6d65;
+  --line: #e3e0d4;
+  --brand: #027a48;
+  --brand-hover: #05603a;
+  --brand-text: #027a48;
+  --brand-soft: #e2f4e9;
+  --accent: #fbb13c;
+  --accent-soft: #fff1d6;
+  --accent-ink: #7a4d00;
+  --gold: #a47c2c;
+  --band: #062a1b;
+  --band-2: #0a3a26;
+  --band-ink: #e9f6ee;
+  --band-muted: #a8c9b6;
+  --glow-1: rgba(2, 122, 72, 0.14);
+  --glow-2: rgba(251, 177, 60, 0.18);
+  --shadow: 0 1px 2px rgba(14, 26, 19, 0.06), 0 12px 32px -12px rgba(14, 26, 19, 0.22);
+  --shadow-lg: 0 2px 4px rgba(14, 26, 19, 0.06), 0 30px 60px -20px rgba(14, 26, 19, 0.35);
+  --lv-ee: #027a48; --lv-me: #2e90fa; --lv-ae: #f79009; --lv-be: #d92d20;
+  --radius: 18px;
+  --display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09110d;
+    --surface: #101a15;
+    --surface-2: #15221b;
+    --ink: #edf4ef;
+    --ink-2: #c4d1c9;
+    --muted: #8fa198;
+    --line: #22322a;
+    --brand-text: #4cd38a;
+    --brand-soft: #0f2e1f;
+    --accent-soft: #3a2a0c;
+    --accent-ink: #fbc56a;
+    --gold: #e3c07a;
+    --band: #041d12;
+    --band-2: #08301f;
+    --glow-1: rgba(50, 213, 131, 0.12);
+    --glow-2: rgba(251, 177, 60, 0.10);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.4), 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09110d;
+  --surface: #101a15;
+  --surface-2: #15221b;
+  --ink: #edf4ef;
+  --ink-2: #c4d1c9;
+  --muted: #8fa198;
+  --line: #22322a;
+  --brand-text: #4cd38a;
+  --brand-soft: #0f2e1f;
+  --accent-soft: #3a2a0c;
+  --accent-ink: #fbc56a;
+  --gold: #e3c07a;
+  --band: #041d12;
+  --band-2: #08301f;
+  --glow-1: rgba(50, 213, 131, 0.12);
+  --glow-2: rgba(251, 177, 60, 0.10);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.4), 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul { margin: 0; padding: 0; list-style: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 720px) { .wrap { padding: 0 28px; } }
+section { scroll-margin-top: 76px; }
+.ico { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 22px; border-radius: 999px;
+  font: 600 16px/1 var(--body); text-decoration: none; cursor: pointer;
+  border: 1px solid transparent; transition: background-color .15s, transform .15s, border-color .15s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--brand); color: #fff; }
+.btn-primary:hover { background: var(--brand-hover); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--ink-2); }
+.btn-accent { background: var(--accent); color: #2b1b00; }
+.btn-accent:hover { background: #f59e0b; }
+.btn-sm { min-height: 40px; padding: 0 16px; font-size: 15px; }
+.btn:focus-visible, a:focus-visible, summary:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.site-header .wrap { display: flex; align-items: center; gap: 20px; height: 64px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 800 22px/1 var(--display); letter-spacing: -0.03em; color: var(--ink); }
+.logo svg { width: 34px; height: 34px; flex: none; }
+.logo b { color: var(--accent); font-weight: 800; }
+.nav { display: none; gap: 4px; margin-left: 12px; }
+.nav a { text-decoration: none; color: var(--ink-2); font-weight: 500; font-size: 15px; padding: 8px 12px; border-radius: 999px; }
+.nav a:hover { color: var(--ink); background: var(--surface-2); }
+.site-header .btn { margin-left: auto; }
+@media (min-width: 860px) { .nav { display: flex; } }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding: 48px 0 72px; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(60% 50% at 12% 8%, var(--glow-1), transparent 70%),
+    radial-gradient(45% 45% at 92% 30%, var(--glow-2), transparent 70%);
+}
+.hero-grid { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 980px) { .hero { padding: 72px 0 96px; } .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 56px; } }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 13px/1 var(--body); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--brand-text);
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+  font-weight: 600; font-size: 14px; color: var(--ink-2);
+}
+.chip .flag { font-size: 16px; line-height: 1; }
+.hero h1 { margin-top: 22px; font-size: clamp(2.5rem, 7.2vw, 4.4rem); font-weight: 800; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; color: var(--brand-text); position: relative; white-space: nowrap; }
+.hero h1 em::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: .02em; height: .16em; border-radius: 99px;
+  background: var(--accent); opacity: .75; z-index: -1;
+}
+.hero .lede { margin-top: 20px; font-size: clamp(1.05rem, 2.2vw, 1.22rem); color: var(--ink-2); max-width: 36em; }
+.hero-cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-notes { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 15px; }
+.hero-notes li { display: inline-flex; align-items: center; gap: 7px; }
+.hero-notes .ico { width: 18px; height: 18px; color: var(--brand-text); stroke-width: 2.4; }
+
+.hero-visual { position: relative; padding-bottom: 64px; }
+.browser {
+  margin: 0; border-radius: 14px; overflow: hidden; background: var(--surface);
+  border: 1px solid var(--line); box-shadow: var(--shadow-lg);
+}
+.browser-bar { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; background: var(--surface-2); border-bottom: 1px solid var(--line); }
+.browser-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.browser-bar i:nth-child(1) { background: #f97066; } .browser-bar i:nth-child(2) { background: #fdb022; } .browser-bar i:nth-child(3) { background: #32d583; }
+.browser-bar span { margin-left: 10px; flex: 1; min-width: 0; height: 22px; border-radius: 6px; background: var(--surface); color: var(--muted); font: 500 12px/22px var(--mono); padding: 0 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.phone {
+  margin: 0; position: relative; width: 100%; max-width: 250px; border-radius: 34px; padding: 8px;
+  background: #0b1410; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,.08);
+}
+.phone::before { content: ""; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); width: 30%; height: 16px; border-radius: 99px; background: #0b1410; z-index: 2; }
+.phone img { border-radius: 27px; width: 100%; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; }
+.hero-visual .phone { position: absolute; right: 0; bottom: 0; width: 34%; min-width: 118px; max-width: 220px; }
+.toast {
+  position: absolute; left: 0; bottom: 8px; width: min(310px, 62%);
+  display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lg);
+}
+.toast .app-ico { width: 36px; height: 36px; border-radius: 10px; flex: none; }
+.toast strong { display: block; font-size: 14px; line-height: 1.3; }
+.toast p { font-size: 13px; line-height: 1.4; color: var(--muted); }
+.toast .when { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+@media (max-width: 520px) {
+  .toast { width: 70%; padding: 10px 12px; gap: 10px; }
+  .toast .app-ico { width: 30px; height: 30px; }
+  .toast .when { display: none; }
+}
+
+/* ---------- facts strip ---------- */
+.facts { border-block: 1px solid var(--line); background: var(--surface); }
+.facts ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.facts li { padding: 22px 12px; text-align: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.facts li:nth-child(2n) { border-right: 0; }
+.facts li:nth-last-child(-n+2) { border-bottom: 0; }
+.facts strong { display: block; font: 700 clamp(1.05rem, 2.4vw, 1.3rem)/1.2 var(--display); letter-spacing: -0.01em; }
+.facts span { display: block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+@media (min-width: 860px) {
+  .facts ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .facts li { border-bottom: 0; }
+  .facts li:nth-child(2n) { border-right: 1px solid var(--line); }
+  .facts li:last-child { border-right: 0; }
+}
+
+/* ---------- section scaffolding ---------- */
+.section { padding: 80px 0; }
+@media (min-width: 980px) { .section { padding: 112px 0; } }
+.section-head { max-width: 760px; }
+.section-head.center { margin: 0 auto; text-align: center; }
+.section-head h2 { margin-top: 14px; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; }
+.section-head p { margin-top: 16px; font-size: 1.1rem; color: var(--ink-2); }
+
+/* ---------- pain points ---------- */
+.pains { margin-top: 44px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .pains { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .pains { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.pain { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.pain .before { color: var(--muted); font-size: 15px; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--lv-be) 60%, transparent); text-decoration-thickness: 1.5px; }
+.pain .after { font-weight: 600; font-size: 16px; line-height: 1.45; display: flex; gap: 10px; }
+.pain .after .ico { color: var(--brand-text); stroke-width: 2.4; width: 20px; height: 20px; margin-top: 2px; }
+.pain .tag { font: 500 12px/1 var(--mono); color: var(--gold); letter-spacing: .02em; text-transform: uppercase; }
+
+/* ---------- spotlights ---------- */
+.spot { display: grid; gap: 40px; align-items: center; }
+.spot + .spot { margin-top: 96px; }
+@media (min-width: 980px) {
+  .spot { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; }
+  .spot.flip .spot-text { order: 2; }
+  .spot + .spot { margin-top: 128px; }
+}
+.spot h3 { margin-top: 14px; font-size: clamp(1.8rem, 4.2vw, 2.7rem); font-weight: 800; }
+.spot-text > p { margin-top: 16px; font-size: 1.08rem; color: var(--ink-2); }
+.ticks { margin-top: 22px; display: grid; gap: 12px; }
+.ticks li { display: flex; gap: 12px; align-items: flex-start; }
+.ticks .ico { width: 22px; height: 22px; padding: 3px; border-radius: 50%; background: var(--brand-soft); color: var(--brand-text); stroke-width: 2.6; margin-top: 1px; }
+.spot-media { position: relative; padding-bottom: 40px; }
+.float-card {
+  position: absolute; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow-lg); padding: 16px;
+}
+.flow { right: 0; bottom: 0; width: min(330px, 82%); }
+.flow-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-weight: 700; font-size: 14px; }
+.pill { font: 500 11px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; padding: 5px 8px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-ink); }
+.flow ol { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 0; }
+.flow li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; position: relative; padding-bottom: 12px; }
+.flow li:last-child { padding-bottom: 0; }
+.flow li::before { content: ""; position: absolute; left: 12px; top: 26px; bottom: 0; width: 2px; background: var(--line); }
+.flow li:last-child::before { display: none; }
+.flow .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: #fff; font: 700 12px/1 var(--body); }
+.flow strong { display: block; font-size: 14px; line-height: 1.35; }
+.flow code { display: block; margin-top: 2px; font: 500 12px/1.45 var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.levels { left: 0; bottom: 0; width: min(300px, 80%); }
+.levels .flow-head { margin-bottom: 12px; }
+.lv { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 10px; align-items: center; font-size: 13.5px; }
+.lv + .lv { margin-top: 8px; }
+.lv b { display: grid; place-items: center; height: 26px; border-radius: 8px; color: #fff; font: 700 12px/1 var(--mono); }
+.editor-mini { right: 0; bottom: 0; width: 44%; min-width: 150px; padding: 6px; border-radius: 12px; }
+.editor-mini img { border-radius: 8px; }
+@media (max-width: 719px) {
+  .spot-media { padding-bottom: 0; }
+  .spot-media > .browser { margin-left: 0 !important; margin-right: 0 !important; }
+  .float-card.flow, .float-card.levels { position: relative; left: auto; right: auto; bottom: auto; width: auto; margin: -32px 14px 0; }
+  .editor-mini { bottom: -24px; }
+  .spot-media:has(.editor-mini) { padding-bottom: 24px; }
+}
+
+/* ---------- app band ---------- */
+.band { background: var(--band); color: var(--band-ink); position: relative; overflow: hidden; }
+.band::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(50% 60% at 85% 0%, rgba(50, 213, 131, .18), transparent 70%), radial-gradient(40% 50% at 0% 100%, rgba(251, 177, 60, .14), transparent 70%);
+}
+.band .wrap { position: relative; }
+.band .eyebrow { color: #6ee7a8; }
+.band .section-head p { color: var(--band-muted); }
+.phones { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: end; max-width: 820px; margin-inline: auto; }
+.phones figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.phones .phone { max-width: 240px; border-color: rgba(255,255,255,.14); }
+.phones figure:nth-child(2) .phone { transform: translateY(-24px); }
+.phones figcaption { font-size: 14px; color: var(--band-muted); text-align: center; }
+@media (min-width: 720px) { .phones { gap: 28px; } .phones figcaption { font-size: 15px; } }
+@media (max-width: 480px) { .phones .phone { border-radius: 22px; padding: 5px; } .phones .phone img { border-radius: 18px; } .phones .phone::before { top: 9px; height: 9px; } }
+.notes-grid { margin-top: 64px; display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .notes-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.note { display: flex; gap: 12px; padding: 16px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+.note .emo { font-size: 22px; line-height: 1.2; }
+.note strong { display: block; font-size: 15px; }
+.note p { font-size: 14px; color: var(--band-muted); line-height: 1.45; margin-top: 2px; }
+.install-row { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: center; color: var(--band-muted); font-size: 15px; }
+.install-row span { display: inline-flex; align-items: center; gap: 8px; }
+.install-row .ico { color: #6ee7a8; width: 20px; height: 20px; }
+
+/* ---------- roles ---------- */
+.roles { margin-top: 44px; display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .roles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .roles { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.role { padding: 22px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+.role .badge { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-text); }
+.role:nth-child(2n) .badge { background: var(--accent-soft); color: var(--accent-ink); }
+.role h3 { margin-top: 16px; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+.role p { margin-top: 6px; font-size: 15px; color: var(--ink-2); line-height: 1.5; }
+
+/* ---------- module grid ---------- */
+.modules { margin-top: 44px; display: grid; gap: 1px; grid-template-columns: minmax(0, 1fr); background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+@media (min-width: 640px) { .modules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 980px) { .modules { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.module { background: var(--surface); padding: 22px; display: flex; gap: 14px; }
+.module .ico { color: var(--brand-text); margin-top: 3px; }
+.module h3 { font: 700 16px/1.3 var(--body); letter-spacing: 0; }
+.module p { margin-top: 4px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+
+/* ---------- Kenya ---------- */
+.kenya { background: var(--surface-2); }
+.kenya-grid { display: grid; gap: 40px; }
+@media (min-width: 980px) { .kenya-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; align-items: start; } }
+.kenya-list { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.kenya-list div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 18px 20px; }
+.kenya-list div + div { border-top: 1px solid var(--line); }
+.kenya-list dt { font: 500 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--gold); }
+.kenya-list dd { margin: 0; font-size: 15.5px; color: var(--ink-2); }
+@media (min-width: 640px) { .kenya-list div { grid-template-columns: 140px minmax(0, 1fr); gap: 20px; align-items: baseline; } }
+.flag-stripe { display: flex; height: 6px; width: 96px; border-radius: 99px; overflow: hidden; margin-top: 28px; }
+.flag-stripe i { flex: 1; }
+
+/* ---------- steps ---------- */
+.steps { margin-top: 44px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); counter-reset: step; }
+@media (min-width: 860px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.step { padding: 26px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); position: relative; }
+.step::before { counter-increment: step; content: "0" counter(step); font: 800 44px/1 var(--display); color: var(--accent); letter-spacing: -0.04em; }
+.step h3 { margin-top: 14px; font-size: 1.3rem; font-weight: 700; }
+.step p { margin-top: 8px; color: var(--ink-2); font-size: 15.5px; }
+
+/* ---------- pricing ---------- */
+.plans { margin-top: 48px; display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); align-items: stretch; }
+@media (min-width: 900px) { .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.plan { position: relative; display: flex; flex-direction: column; padding: 28px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); }
+.plan.popular { border: 2px solid var(--brand); box-shadow: var(--shadow-lg); }
+.plan .ribbon { position: absolute; top: -13px; left: 28px; background: var(--brand); color: #fff; font: 600 12px/1 var(--body); padding: 7px 12px; border-radius: 99px; letter-spacing: .02em; }
+.plan h3 { font-size: 1.35rem; font-weight: 700; }
+.plan .tagline { margin-top: 4px; color: var(--muted); font-size: 15px; }
+.price { margin-top: 20px; display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.price .cur { font: 600 16px/1 var(--body); color: var(--muted); }
+.price .amt { font: 800 52px/1 var(--display); letter-spacing: -0.04em; }
+.price .per { font-size: 14.5px; color: var(--muted); }
+.plan ul { margin-top: 22px; display: grid; gap: 10px; flex: 1; }
+.plan li { display: flex; gap: 10px; font-size: 15.5px; }
+.plan li .ico { width: 20px; height: 20px; color: var(--brand-text); stroke-width: 2.4; margin-top: 2px; }
+.plan .btn { margin-top: 26px; width: 100%; }
+.trial-note { margin-top: 28px; text-align: center; color: var(--muted); font-size: 15px; }
+.trial-note strong { color: var(--ink); }
+
+/* ---------- FAQ ---------- */
+.faq-grid { display: grid; gap: 40px; }
+@media (min-width: 980px) { .faq-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; } }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 17px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ico { transition: transform .2s; color: var(--muted); }
+.faq details[open] summary .ico { transform: rotate(45deg); color: var(--brand-text); }
+.faq details p { padding: 0 0 20px; color: var(--ink-2); max-width: 60ch; }
+
+/* ---------- contact CTA ---------- */
+.cta { padding: 0 0 96px; }
+.cta-card {
+  position: relative; overflow: hidden; border-radius: 28px; padding: 48px 22px;
+  background: linear-gradient(150deg, #05603a 0%, #027a48 55%, #054f31 100%); color: #fff;
+}
+.cta-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(40% 60% at 90% 10%, rgba(251,177,60,.32), transparent 70%), radial-gradient(40% 60% at 0% 100%, rgba(50,213,131,.28), transparent 70%); }
+.cta-inner { position: relative; display: grid; gap: 36px; }
+@media (min-width: 720px) { .cta-card { padding: 64px 56px; } }
+@media (min-width: 980px) { .cta-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 56px; } }
+.cta h2 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 800; }
+.cta .lede { margin-top: 14px; color: #d1fadf; font-size: 1.1rem; }
+.cta .ticks li { color: #ecfdf3; }
+.cta .ticks .ico { background: rgba(255,255,255,.14); color: #fff; }
+.contact-tiles { display: grid; gap: 12px; }
+.tile {
+  display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 16px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); color: #fff; text-decoration: none;
+  min-width: 0;
+}
+a.tile:hover { background: rgba(255,255,255,.16); }
+.tile .ico { width: 24px; height: 24px; color: var(--accent); }
+.tile small { display: block; font-size: 12.5px; color: #a6f4c5; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+.tile span { display: block; font-weight: 600; font-size: 16px; overflow-wrap: anywhere; }
+.tile .copy { margin-left: auto; flex: none; background: rgba(255,255,255,.14); color: #fff; border: 0; border-radius: 99px; padding: 8px 12px; font: 600 13px/1 var(--body); cursor: pointer; }
+.tile .copy:hover { background: rgba(255,255,255,.24); }
+.contact-empty { padding: 22px; border-radius: 18px; background: rgba(255,255,255,.08); border: 1px dashed rgba(255,255,255,.28); color: #d1fadf; }
+.contact-empty strong { display: block; color: #fff; font-size: 1.1rem; font-family: var(--display); }
+.contact-empty p { margin-top: 6px; font-size: 15px; }
+.maker { display: flex; align-items: center; gap: 12px; margin-top: 8px; color: #d1fadf; font-size: 14px; }
+.maker img { width: 56px; height: 56px; }
+.maker b { color: #fff; font-family: var(--display); font-size: 17px; }
+.maker b span { color: #e3c07a; }
+
+/* ---------- footer ---------- */
+.site-footer { border-top: 1px solid var(--line); padding: 44px 0 calc(40px + env(safe-area-inset-bottom, 0px)); }
+.footer-grid { display: grid; gap: 28px; }
+@media (min-width: 860px) { .footer-grid { grid-template-columns: minmax(0, 1fr) auto; align-items: center; } }
+.site-footer .tag { margin-top: 10px; color: var(--muted); font-size: 15px; }
+.site-footer .tag b { color: var(--gold); font-weight: 600; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.footer-links a { color: var(--ink-2); text-decoration: none; font-size: 15px; }
+.footer-links a:hover { color: var(--brand-text); }
+.byline { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 14px; }
+.byline .pt { display: inline-flex; align-items: center; gap: 10px; }
+.byline .pt img { width: 34px; height: 34px; }
+.byline .pt b { color: var(--ink); font-family: var(--display); font-weight: 700; }
+.byline .pt b span { color: var(--gold); }
+
+/* ---------- reveal ---------- */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#027a48"/><path d="M20 8 6 15l14 7 11-5.5V25h3V15L20 8Z" fill="#fff"/><path d="M12 20.5V26c0 2.8 3.6 5 8 5s8-2.2 8-5v-5.5l-8 4-8-4Z" fill="#fbb13c"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></symbol>
+    <symbol id="i-register" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5"/><path d="m9 13 2 2 4-4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v14H6.5A1.5 1.5 0 0 0 5 18.5v-14Z"/><path d="M5 18.5A1.5 1.5 0 0 0 6.5 20H19"/><path d="M9 7h6"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="i-useradd" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 13 0"/><path d="M19 8v6M16 11h6"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="14" rx="2.5"/><path d="M4 10h16M8 20.5v-3M16 20.5v-3"/><path d="M8 14h.01M16 14h.01"/></symbol>
+    <symbol id="i-library" viewBox="0 0 24 24"><path d="M5 4h3v16H5zM10 4h3v16h-3z"/><path d="m15.5 5 2.9-.8 3.1 15-2.9.8z"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5v-9Z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10Z"/><path d="M12 10.5v4M10 12.5h4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8 7.5 9.5 4.3-1.5 7.5-5 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M8 6H5a3 3 0 0 0 3 3M16 6h3a3 3 0 0 1-3 3M12 13v4M8.5 20h7M10 17h4"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2.5 2.5M14 9l2 2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></symbol>
+    <symbol id="i-school" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5M12 9.5h.01"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20l2-4M16 20l-2-4M7 9h6"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.5 14.5A5 5 0 0 1 21 19.5"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 5 2.5 9.5 12 14l9.5-4.5L12 5Z"/><path d="M6.5 11.5V16c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3v-4.5M21.5 9.5V15"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 19.5 5.6 16A8 8 0 1 1 8.4 18.6l-3.9.9Z"/><path d="M9 10.5h.01M12 10.5h.01M15 10.5h.01"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Elimuhub home"><svg aria-hidden="true"><use href="#logo"/></svg><span>Elimu<b>hub</b></span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#app">Mobile app</a>
+      <a href="#kenya">Built for Kenya</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#contact">Book a demo</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="chip"><span class="flag" aria-hidden="true">🇰🇪</span> A better education for all</span>
+        <h1>Run your whole school from <em>one app.</em></h1>
+        <p class="lede">Elimuhub brings fees and M-Pesa, CBC and KCSE exams, report cards, payroll, parent communication and your school website together — for primary and secondary schools across Kenya.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">Book a free demo <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#features">See what it does</a>
+        </div>
+        <ul class="hero-notes">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>30-day free trial</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Nothing to install</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Android, iPhone &amp; web</li>
+        </ul>
+      </div>
+      <div class="hero-visual">
+        <figure class="browser">
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>elimuhub · Dashboard</span></div>
+          <img src="img/s-dashboard.webp" width="1440" height="900" alt="The Elimuhub dashboard showing fee collections, active learners, staff and outstanding balances" fetchpriority="high">
+        </figure>
+        <figure class="phone"><img src="img/p-portal-home.webp" width="390" height="844" alt="The Elimuhub parent app home screen on a phone"></figure>
+        <div class="toast" role="img" aria-label="Example notification: payment received, KES 12,500 for Brian, receipt issued">
+          <svg class="app-ico" aria-hidden="true"><use href="#logo"/></svg>
+          <div>
+            <strong>Payment received</strong>
+            <p>KES 12,500 for Brian (Grade 7) via M-Pesa. Receipt sent.</p>
+          </div>
+          <span class="when">now</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <div class="facts">
+    <ul class="wrap">
+      <li><strong>PP1 → Grade 12</strong><span>plus 8-4-4 Forms 3–4</span></li>
+      <li><strong>M-Pesa built in</strong><span>Paybill &amp; STK push</span></li>
+      <li><strong>CBC &amp; KCSE</strong><span>rubrics and 12-point grading</span></li>
+      <li><strong>One app</strong><span>for staff, parents &amp; students</span></li>
+    </ul>
+  </div>
+
+  <!-- PAINS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Sound familiar?</span>
+        <h2>The paperwork ends here.</h2>
+        <p>Every term, Kenyan schools lose weeks to the same problems. Elimuhub was built to fix them.</p>
+      </div>
+      <div class="pains">
+        <div class="pain reveal">
+          <span class="tag">Fees</span>
+          <p class="before">Matching M-Pesa statements to learners by hand</p>
+          <p class="after"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Payments matched by admission number, receipt sent automatically</p>
+        </div>
+        <div class="pain reveal">
+          <span class="tag">Exams</span>
+          <p class="before">Typing report cards one learner at a time</p>
+          <p class="after"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Print-ready report cards for the whole class in one click</p>
+        </div>
+        <div class="pain reveal">
+          <span class="tag">Parents</span>
+          <p class="before">Queues at the bursar's office to ask for balances</p>
+          <p class="after"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Parents check balances, receipts and results on their phone</p>
+        </div>
+        <div class="pain reveal">
+          <span class="tag">Payroll</span>
+          <p class="before">Working out PAYE, SHIF and NSSF on a spreadsheet</p>
+          <p class="after"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Payslips with every statutory deduction calculated for you</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features" style="padding-top:0">
+    <div class="wrap">
+      <article class="spot">
+        <div class="spot-text reveal">
+          <span class="eyebrow">Fees &amp; M-Pesa</span>
+          <h3>Fees that reconcile themselves.</h3>
+          <p>Parents pay to your Paybill using the admission number. Elimuhub matches every payment to the right learner, issues the receipt and updates the balance — no more matching statements by hand.</p>
+          <ul class="ticks">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Fee structures per class and term, billed in one click</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>M-Pesa Paybill and STK push, matched by admission number</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Receipts, statements and balances always up to date</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Bursaries, NG-CDF, capitation, expenses and budgets</li>
+          </ul>
+        </div>
+        <div class="spot-media reveal">
+          <figure class="browser" style="margin-right:12%">
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>elimuhub · Finance</span></div>
+            <img src="img/s-finance.webp" width="1440" height="900" loading="lazy" alt="Finance overview with amounts billed, collected and outstanding for the term, daily collections and payments by method">
+          </figure>
+          <div class="float-card flow">
+            <div class="flow-head">How a payment flows <span class="pill">Example</span></div>
+            <ol>
+              <li><span class="n">1</span><div><strong>Parent pays via M-Pesa</strong><code>Paybill · Acc MA0120 · KES 12,500</code></div></li>
+              <li><span class="n">2</span><div><strong>Matched to the learner</strong><code>Brian Kamau · Grade 7 East</code></div></li>
+              <li><span class="n">3</span><div><strong>Receipt issued, balance updated</strong><code>RCT-000482 · Balance KES 4,500</code></div></li>
+              <li><span class="n">4</span><div><strong>Parent notified instantly</strong><code>Push notification + SMS</code></div></li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <article class="spot flip">
+        <div class="spot-text reveal">
+          <span class="eyebrow">Exams &amp; report cards</span>
+          <h3>Report cards in minutes, not weeks.</h3>
+          <p>Teachers enter marks on a phone or laptop. Elimuhub applies CBC rubrics or KCSE grading, ranks learners and produces print-ready report cards for the whole class.</p>
+          <ul class="ticks">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>CBC/CBE performance levels with competencies and values</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>KCSE 12-point grading with the best-7 mean grade</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Merit lists and subject analysis for every exam</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Results published straight to parents' phones</li>
+          </ul>
+        </div>
+        <div class="spot-media reveal">
+          <figure class="browser" style="margin-left:12%">
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>elimuhub · Report card</span></div>
+            <img src="img/s-report-card.webp" width="1440" height="900" loading="lazy" alt="A CBC learner's progress report card with scores, performance levels, competencies and values">
+          </figure>
+          <div class="float-card levels">
+            <div class="flow-head">CBC performance levels</div>
+            <div class="lv"><b style="background:var(--lv-ee)">EE</b><span>Exceeding expectations</span></div>
+            <div class="lv"><b style="background:var(--lv-me)">ME</b><span>Meeting expectations</span></div>
+            <div class="lv"><b style="background:var(--lv-ae)">AE</b><span>Approaching expectations</span></div>
+            <div class="lv"><b style="background:var(--lv-be)">BE</b><span>Below expectations</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="spot">
+        <div class="spot-text reveal">
+          <span class="eyebrow">School website builder</span>
+          <h3>A beautiful school website, built in an afternoon.</h3>
+          <p>Pick a design, add your photos and news, and publish. Parents apply for admission online, and every application and message lands straight in Elimuhub.</p>
+          <ul class="ticks">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Ready-made designs in your school colours</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Pages, news, events and a photo gallery</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Online admission applications</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your own .ac.ke or .sc.ke domain on Premium</li>
+          </ul>
+        </div>
+        <div class="spot-media reveal">
+          <figure class="browser" style="margin-right:10%">
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>mwangaza-academy · Home</span></div>
+            <img src="img/s-school-website.webp" width="1440" height="900" loading="lazy" alt="A school website made with Elimuhub, with a welcome banner, admissions button and school statistics">
+          </figure>
+          <figure class="float-card editor-mini"><img src="img/s-website-editor.webp" width="1440" height="900" loading="lazy" alt="The drag-and-drop website editor with page sections and a live preview"></figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- APP BAND -->
+  <section class="band section" id="app">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">The Elimuhub app</span>
+        <h2>The whole school in every parent's pocket.</h2>
+        <p>Parents, teachers and students each get their own app on Android and iPhone — install it from Google Play or straight from the browser.</p>
+      </div>
+      <div class="phones reveal">
+        <figure><div class="phone"><img src="img/p-portal-fees.webp" width="390" height="844" loading="lazy" alt="Fee statement and M-Pesa payment details in the parent app"></div><figcaption>Fee balance &amp; receipts</figcaption></figure>
+        <figure><div class="phone"><img src="img/p-portal-home.webp" width="390" height="844" loading="lazy" alt="Parent app home showing each child's fees, results and attendance"></div><figcaption>Every child, one app</figcaption></figure>
+        <figure><div class="phone"><img src="img/p-portal-report.webp" width="390" height="844" loading="lazy" alt="A report card opened in the parent app"></div><figcaption>Report cards on the go</figcaption></figure>
+      </div>
+      <div class="notes-grid">
+        <div class="note reveal"><span class="emo" aria-hidden="true">💰</span><div><strong>Payment received</strong><p>A receipt the moment M-Pesa confirms.</p></div></div>
+        <div class="note reveal"><span class="emo" aria-hidden="true">📊</span><div><strong>Results are out</strong><p>Report cards as soon as the school publishes.</p></div></div>
+        <div class="note reveal"><span class="emo" aria-hidden="true">🗓️</span><div><strong>Absence alert</strong><p>Parents know the same morning.</p></div></div>
+        <div class="note reveal"><span class="emo" aria-hidden="true">📢</span><div><strong>New notice</strong><p>Closing dates, meetings and events.</p></div></div>
+      </div>
+      <div class="install-row">
+        <span><svg class="ico" aria-hidden="true"><use href="#i-mobile"/></svg>Android &amp; Google Play</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-mobile"/></svg>iPhone (Add to Home Screen)</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-monitor"/></svg>Any web browser</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-bell"/></svg>Push notifications</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">For everyone at school</span>
+        <h2>One system. Every role.</h2>
+        <p>Each person signs in and sees exactly what their job needs — nothing more.</p>
+      </div>
+      <div class="roles">
+        <div class="role reveal"><div class="badge"><svg class="ico" aria-hidden="true"><use href="#i-school"/></svg></div><h3>Principals</h3><p>Collections, attendance and results at a glance, from anywhere.</p></div>
+        <div class="role reveal"><div class="badge"><svg class="ico" aria-hidden="true"><use href="#i-receipt"/></svg></div><h3>Bursars</h3><p>Billing, M-Pesa, receipts, expenses and payroll in one place.</p></div>
+        <div class="role reveal"><div class="badge"><svg class="ico" aria-hidden="true"><use href="#i-board"/></svg></div><h3>Teachers</h3><p>Registers, marks, lesson plans and assignments on their phone.</p></div>
+        <div class="role reveal"><div class="badge"><svg class="ico" aria-hidden="true"><use href="#i-family"/></svg></div><h3>Parents</h3><p>Balances, receipts, results and notices the moment they happen.</p></div>
+        <div class="role reveal"><div class="badge"><svg class="ico" aria-hidden="true"><use href="#i-cap"/></svg></div><h3>Students</h3><p>Timetable, assignments and results in their own portal.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">And everything else</span>
+        <h2>Every corner of school life, covered.</h2>
+      </div>
+      <div class="modules reveal">
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-cash"/></svg><div><h3>Payroll &amp; HR</h3><p>PAYE, SHIF, NSSF and the Housing Levy on every payslip.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-register"/></svg><div><h3>Attendance</h3><p>Class registers in seconds, with alerts for absent learners.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><div><h3>Timetable</h3><p>Class and teacher timetables that everyone can see.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><div><h3>Lesson plans</h3><p>Schemes of work, lesson plans and assignments.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-message"/></svg><div><h3>Bulk SMS &amp; notices</h3><p>Reach every parent by SMS, notification and notice board.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-useradd"/></svg><div><h3>Admissions</h3><p>Online applications flow into one admissions list.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-bed"/></svg><div><h3>Boarding &amp; exeats</h3><p>Dormitories, bed allocation and exeat passes.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg><div><h3>Transport</h3><p>Routes, vehicles and the learners on each route.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-library"/></svg><div><h3>Library</h3><p>Catalogue, issues, returns and overdue books.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg><div><h3>Stores &amp; assets</h3><p>Inventory, stock movements and school assets.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg><div><h3>Sick bay</h3><p>Health records, clinic visits and allergies.</p></div></div>
+        <div class="module"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><div><h3>Discipline &amp; counselling</h3><p>Incidents, actions and confidential counselling notes.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KENYA -->
+  <section class="section kenya" id="kenya">
+    <div class="wrap kenya-grid">
+      <div class="section-head reveal">
+        <span class="eyebrow">Built for Kenya</span>
+        <h2>Made here, for how our schools really work.</h2>
+        <p>Not a foreign system with the currency changed. Elimuhub speaks CBC, KCSE, M-Pesa and KEMIS from day one.</p>
+        <div class="flag-stripe" aria-hidden="true"><i style="background:#0a0a0a"></i><i style="background:#bb0000"></i><i style="background:#006600"></i></div>
+      </div>
+      <dl class="kenya-list reveal">
+        <div><dt>Curriculum</dt><dd>CBC/CBE from PP1 to Grade 12 with Senior School pathways, plus 8-4-4 Forms 3–4 with KCSE subject groups</dd></div>
+        <div><dt>Assessment</dt><dd>KCSE 12-point grading with best-7 mean grade, CBC 4-level and 8-level rubrics, competencies and values</dd></div>
+        <div><dt>Calendar</dt><dd>Three terms with half-term breaks and public holidays</dd></div>
+        <div><dt>Identifiers</dt><dd>KEMIS/NEMIS UPI, KNEC numbers, TSC numbers and KRA PINs</dd></div>
+        <div><dt>Money</dt><dd>KES throughout, M-Pesa Paybill and STK push, NG-CDF and county bursaries, capitation</dd></div>
+        <div><dt>Payroll</dt><dd>PAYE with personal relief, SHIF, NSSF tiers and the Affordable Housing Levy</dd></div>
+        <div><dt>Contacts</dt><dd>Kenyan phone numbers (07xx, 01xx, +254) and all 47 counties</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Getting started</span>
+        <h2>Getting started is simple.</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>Book a demo</h3><p>See Elimuhub working with a real demo school — fees, exams, the parent app and your website.</p></div>
+        <div class="step reveal"><h3>Bring your school in</h3><p>Import learners, guardians and opening balances from Excel (CSV). On Premium, we do it for you.</p></div>
+        <div class="step reveal"><h3>Go live</h3><p>Invite your staff and parents. They sign in on the web or install the app on their phone.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple pricing per learner, per term.</h2>
+        <p>Pay only for the learners you have. Every plan includes the mobile app.</p>
+      </div>
+      <div class="plans">
+        <div class="plan reveal">
+          <h3>Basic</h3>
+          <p class="tagline">Fees, exams and the parent portal</p>
+          <div class="price"><span class="cur">KES</span><span class="amt">50</span><span class="per">per learner / term</span></div>
+          <ul>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Students, parents &amp; staff</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Fees, receipts &amp; M-Pesa</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Exams, CBC &amp; report cards</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Attendance &amp; timetable</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Parent &amp; student portal</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Mobile app &amp; push notifications</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Start free trial</a>
+        </div>
+        <div class="plan popular reveal">
+          <span class="ribbon">Most popular</span>
+          <h3>Standard</h3>
+          <p class="tagline">The complete school system</p>
+          <div class="price"><span class="cur">KES</span><span class="amt">80</span><span class="per">per learner / term</span></div>
+          <ul>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Everything in Basic</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Payroll &amp; HR</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Bulk SMS</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Boarding, transport &amp; library</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Inventory, health &amp; discipline</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>School website builder</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact">Start free trial</a>
+        </div>
+        <div class="plan reveal">
+          <h3>Premium</h3>
+          <p class="tagline">For larger and multi-campus schools</p>
+          <div class="price"><span class="cur">KES</span><span class="amt">120</span><span class="per">per learner / term</span></div>
+          <ul>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Everything in Standard</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Custom domain (.ac.ke / .sc.ke)</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Priority phone support</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Data migration &amp; onboarding</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Staff training sessions</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Talk to us</a>
+        </div>
+      </div>
+      <p class="trial-note"><strong>Every school starts with a 30-day free trial</strong> with all features. No card or payment needed to start.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section kenya" id="faq">
+    <div class="wrap faq-grid">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions schools ask us.</h2>
+      </div>
+      <div class="faq reveal">
+        <details open><summary>Is there a free trial?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. Every school gets a 30-day free trial with all features. No card or payment needed to start.</p></details>
+        <details><summary>Does it work for primary and secondary schools?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. Elimuhub supports Pre-Primary, Primary, Junior School, Senior School and 8-4-4 secondary, including mixed and comprehensive schools.</p></details>
+        <details><summary>Do we need to install anything?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>No. Elimuhub runs in the browser. Parents and staff can also install it as an app from Google Play or straight from the browser.</p></details>
+        <details><summary>What about parents without smartphones?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>They still receive SMS messages from the school, such as fee reminders and notices, and keep paying fees through M-Pesa as usual.</p></details>
+        <details><summary>Can we move our data from another system?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. Import learners, guardians and opening balances from CSV. On Premium, our team handles the migration for you.</p></details>
+        <details><summary>Who owns the data?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Your school does. Each school's records are kept separate, every user only sees what their role allows, and you can export your records at any time.</p></details>
+        <details><summary>Who makes Elimuhub?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Elimuhub is a product of Pizza Technologies, a Kenyan software company.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="cta section" id="contact">
+    <div class="wrap">
+      <div class="cta-card reveal">
+        <div class="cta-inner">
+          <div>
+            <h2>See Elimuhub at your school.</h2>
+            <p class="lede">Book a free demo and start your 30-day trial. We'll show you how Elimuhub works for a school like yours.</p>
+            <ul class="ticks">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>A guided walkthrough of fees, exams and the parent app</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Help bringing in your learners from Excel</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>30 days free, with every feature switched on</li>
+            </ul>
+          </div>
+          <div>
+            <div class="contact-tiles" id="contact-tiles"></div>
+            <div class="contact-empty" id="contact-empty">
+              <strong>Talk to Pizza Technologies</strong>
+              <p>Ask us for a demo and we'll set up a trial for your school.</p>
+            </div>
+            <div class="maker">
+              <img src="img/pizza-emblem.png" width="512" height="512" alt="">
+              <div>A product of<br><b>Pizza <span>Technologies</span></b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top"><svg aria-hidden="true"><use href="#logo"/></svg><span>Elimu<b>hub</b></span></a>
+        <p class="tag"><b>A better education for all.</b> School management for Kenyan primary and secondary schools.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#features">Features</a>
+        <a href="#app">Mobile app</a>
+        <a href="#kenya">Built for Kenya</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Book a demo</a>
+      </nav>
+    </div>
+    <div class="byline">
+      <span class="pt"><img src="img/pizza-badge.png" width="512" height="512" alt=""><span>A product of <b>Pizza <span>Technologies</span></b></span></span>
+      <span>© <span id="year">2026</span> Pizza Technologies. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Contact details for the "Book a demo" section. Leave a value empty to hide it.
+  var CONTACT = {
+    whatsapp: "",   // e.g. "254712345678" (country code, no +)
+    phone: "",      // e.g. "0712 345 678"
+    email: "",      // e.g. "hello@example.co.ke"
+    website: ""     // e.g. "https://app.example.co.ke"
+  };
+
+  (function () {
+    document.documentElement.classList.add("js");
+    var y = document.getElementById("year");
+    if (y) y.textContent = String(new Date().getFullYear());
+
+    var tiles = document.getElementById("contact-tiles");
+    var empty = document.getElementById("contact-empty");
+    var made = 0;
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+    function icon(id) {
+      var ns = "http://www.w3.org/2000/svg";
+      var s = document.createElementNS(ns, "svg");
+      s.setAttribute("class", "ico"); s.setAttribute("aria-hidden", "true");
+      var u = document.createElementNS(ns, "use");
+      u.setAttribute("href", "#" + id);
+      s.appendChild(u);
+      return s;
+    }
+    function body(label, value) {
+      var d = el("div"); d.style.minWidth = "0";
+      d.appendChild(el("small", "", label));
+      d.appendChild(el("span", "", value));
+      return d;
+    }
+    function linkTile(iconId, label, value, href) {
+      var a = el("a", "tile");
+      a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer";
+      a.appendChild(icon(iconId)); a.appendChild(body(label, value));
+      tiles.appendChild(a); made++;
+    }
+    function copyTile(iconId, label, value) {
+      var t = el("div", "tile");
+      t.appendChild(icon(iconId)); t.appendChild(body(label, value));
+      var b = el("button", "copy", "Copy"); b.type = "button";
+      b.addEventListener("click", function () {
+        var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1600); };
+        try {
+          navigator.clipboard.writeText(value).then(done, function () { selectText(t); });
+        } catch (e) { selectText(t); }
+      });
+      t.appendChild(b);
+      tiles.appendChild(t); made++;
+    }
+    function selectText(t) {
+      try {
+        var r = document.createRange(); r.selectNodeContents(t.querySelector("span"));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      } catch (e) {}
+    }
+
+    var wa = String(CONTACT.whatsapp || "").replace(/\D/g, "");
+    if (wa) linkTile("i-chat", "WhatsApp", "+" + wa, "https://wa.me/" + wa + "?text=" + encodeURIComponent("Hello, I'd like a demo of Elimuhub for our school."));
+    if (CONTACT.phone) copyTile("i-phone", "Call us", CONTACT.phone);
+    if (CONTACT.email) copyTile("i-mail", "Email", CONTACT.email);
+    if (CONTACT.website) linkTile("i-globe", "Website", CONTACT.website.replace(/^https?:\/\//, "").replace(/\/$/, ""), CONTACT.website);
+    if (made) { empty.hidden = true; } else { tiles.hidden = true; }
+
+    var items = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      items.forEach(function (n) { n.classList.add("in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    items.forEach(function (n) { io.observe(n); });
+  })();
+</script>
+</body>
+</html>

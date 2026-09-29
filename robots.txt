@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pizzatechies.github.io/elimuhb/sitemap.xml
