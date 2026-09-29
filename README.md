@@ -13,6 +13,7 @@ Elimuhub is a product of **Pizza Technologies**.
 | Path | Purpose |
 | --- | --- |
 | `index.html` | The whole site: one self-contained page (HTML, CSS and a little JavaScript) |
+| `app/` | The Elimuhub demo as an installable web app (PWA): https://pizzatechies.github.io/elimuhb/app/ — published from the main Elimuhub repository with `android/demo-app/publish-web.sh`, so edit it there, not here |
 | `img/` | App screenshots and the Pizza Technologies logo |
 | `icons/`, `favicon.svg` | Browser and home-screen icons |
 | `og-image.jpg` | Preview image shown when the link is shared on WhatsApp, Facebook, X, etc. |
