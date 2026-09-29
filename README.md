@@ -18,7 +18,7 @@ Elimuhub is a product of **Pizza Technologies**.
 | `og-image.jpg` | Preview image shown when the link is shared on WhatsApp, Facebook, X, etc. |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are |
 
-There is no build step. Edit `index.html` and push to `main`; GitHub Pages republishes the site within a minute or two.
+There is no build step. Edit `index.html` and push to `main`: the **Publish website** workflow copies `main` to the `gh-pages` branch, and GitHub Pages republishes the site within a minute or two.
 
 ## Adding your contact details
 
@@ -37,6 +37,6 @@ Any value left empty stays hidden.
 
 ## Hosting
 
-The site is served by GitHub Pages from the `main` branch (root folder): **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `/ (root)`**.
+The site is served by GitHub Pages from the `gh-pages` branch (root folder), which `.github/workflows/publish.yml` keeps identical to `main`. Don't edit `gh-pages` directly; it is overwritten on every push to `main`.
 
 To use your own domain (for example `www.elimuhub.co.ke`), add it under **Settings → Pages → Custom domain** and point a `CNAME` DNS record at `pizzatechies.github.io`. Then update the `canonical`, `og:url` and `og:image` addresses at the top of `index.html`, and the URL in `sitemap.xml` and `robots.txt`.
